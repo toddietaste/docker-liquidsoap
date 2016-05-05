@@ -9,4 +9,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends liquidsoap liqu
 VOLUME ["/home/liquidsoap"]
 
 USER liquidsoap
-CMD ["liquidsoap", "/home/liquidsoap/radio.liq", "--verbose"]
+CMD ["liquidsoap", "$LS_SCRIPT", "--verbose"]
