@@ -8,5 +8,5 @@ RUN apt-get update && apt-get -y install liquidsoap liquidsoap-plugin-lame && \
 
 VOLUME ["/srv/liquidsoap"]
 
-#USER liquidsoap
-#CMD ["liquidsoap", "/srv/liquidsoap/radio.liq", "--verbose"]
+USER liquidsoap
+ENTRYPOINT ["liquidsoap", "/srv/liquidsoap/radio.liq", "--verbose"]
