@@ -3,3 +3,4 @@ services:
   - docker
 script:
   - docker build -t infiniteproject/liquidsoap .
+  - docker ps -a
