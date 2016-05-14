@@ -10,4 +10,4 @@ RUN mkdir -p /srv/liquidsoap
 RUN chown -R liquidsoap:liquidsoap /srv/liquidsoap
 
 USER liquidsoap
-ENTRYPOINT ["liquidsoap", "/srv/liquidsoap/radio.liq", "--verbose"]
+ENTRYPOINT ["liquidsoap", "/srv/liquidsoap/radio.liq"]
