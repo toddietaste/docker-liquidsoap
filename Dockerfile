@@ -1,15 +1,13 @@
-FROM alpine:edge
+FROM ubuntu:latest
 
 MAINTAINER infiniteproject@gmail.com
 
-RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-    apk add --update ocaml@testing opam@testing && \
-    opam init && opam install depext && opam depext liquidsoap && opam install liquidsoap
+ENV DEBIAN_FRONTEND noninteractive
 
-#RUN adduser liquidsoap && mkdir -p /srv/liquidsoap && chown -R liquidsoap:liquidsoap /srv/liquidsoap
-#USER liquidsoap
-#RUN git clone https://github.com/savonet/liquidsoap-full.git liquidsoap && \
-#    cd liquidsoap && make init && ./bootstrap && ./configure && \
-#    cp PACKAGES.minimal PACKAGES && make
+RUN apt-get update && apt-get -y install liquidsoap liquidsoap-plugin-all && \
+    apt-get clean && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-#ENTRYPOINT ["liquidsoap", "/srv/liquidsoap/radio.liq"]
+RUN mkdir -p /srv/liquidsoap && chown -R liquidsoap:liquidsoap /srv/liquidsoap
+
+USER liquidsoap
+ENTRYPOINT ["liquidsoap", "/srv/liquidsoap/radio.liq"]
