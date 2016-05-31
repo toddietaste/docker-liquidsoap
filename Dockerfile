@@ -9,4 +9,4 @@ RUN apt-get update && apt-get -y install liquidsoap liquidsoap-plugin-all && \
 RUN mkdir -p /srv/liquidsoap && chown -R liquidsoap:liquidsoap /srv/liquidsoap
 
 USER liquidsoap
-ENTRYPOINT ["liquidsoap", "/srv/liquidsoap/*.liq"]
+ENTRYPOINT ["liquidsoap", "/srv/liquidsoap/script.liq"]
