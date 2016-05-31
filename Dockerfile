@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM ubuntu:latest
 
 MAINTAINER infiniteproject@gmail.com
 
