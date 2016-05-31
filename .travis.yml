@@ -2,5 +2,4 @@ sudo: required
 services:
   - docker
 script:
-  - docker build -t infiniteproject/liquidsoap .
-  - docker ps -a
+  - docker build -t liquidsoap .
