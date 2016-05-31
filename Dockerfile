@@ -4,9 +4,8 @@ MAINTAINER infiniteproject@gmail.com
 
 RUN apk add --update make perl git automake autoconf ocaml && \
     git clone https://github.com/savonet/liquidsoap-full.git liquidsoap && \
-    cd liquidsoap && make init && cp PACKAGES.minimal PACKAGES && \
-    ./bootstrap && ./configure && \
-    make
+    cd liquidsoap && make init && ./bootstrap && ./configure && \
+    cp PACKAGES.minimal PACKAGES && make
 
 RUN adduser liquidsoap && mkdir -p /srv/liquidsoap && chown -R liquidsoap:liquidsoap /srv/liquidsoap
 
