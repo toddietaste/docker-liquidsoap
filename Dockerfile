@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM ocaml:alpine
 
 MAINTAINER infiniteproject@gmail.com
 
