@@ -1,13 +1,14 @@
-FROM debian:latest
+FROM alpine:latest
 
 MAINTAINER infiniteproject@gmail.com
 
-ENV DEBIAN_FRONTEND noninteractive
+RUN apk add --update make perl git automake autoconf && \
+    git clone https://github.com/savonet/liquidsoap-full.git liquidsoap && \
+    cd liquidsoap && make init && cp PACKAGES.minimal PACKAGES && \
+    ./bootstrap && ./configure && \
+    make
 
-RUN apt-get update && apt-get -y install liquidsoap liquidsoap-plugin-all && \
-    apt-get clean && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN mkdir -p /srv/liquidsoap && chown -R liquidsoap:liquidsoap /srv/liquidsoap
+RUN adduser liquidsoap && mkdir -p /srv/liquidsoap && chown -R liquidsoap:liquidsoap /srv/liquidsoap
 
 USER liquidsoap
 ENTRYPOINT ["liquidsoap", "/srv/liquidsoap/radio.liq"]
