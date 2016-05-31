@@ -2,7 +2,7 @@ FROM alpine:edge
 
 MAINTAINER infiniteproject@gmail.com
 
-RUN apk add --update make perl git automake autoconf gcc && \
+RUN apk add --update make perl git automake autoconf g++ && \
     git clone https://github.com/savonet/liquidsoap-full.git liquidsoap && \
     cd liquidsoap && make init && ./bootstrap && ./configure && \
     cp PACKAGES.minimal PACKAGES && make
