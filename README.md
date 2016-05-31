@@ -3,6 +3,6 @@
 Liquidsoap for Docker
 ```
 docker run -d \
-    -v /path/to/radio.liq:/srv/liquidsoap/whathever.liq \
+    -v /path/to/radio.liq:/srv/liquidsoap/radio.liq \
   infiniteproject/liquidsoap
 ```
