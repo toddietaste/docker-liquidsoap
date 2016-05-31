@@ -2,5 +2,7 @@
 # Liquidsoap
 Liquidsoap for Docker
 ```
-docker run -d -v ./radio.liq:/srv/liquidsoap/radio.liq:ro infiniteproject/liquidsoap
+docker run -d \
+    -v /path/to/radio.liq:/srv/liquidsoap/whathever.liq \
+  infiniteproject/liquidsoap
 ```
