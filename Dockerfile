@@ -4,8 +4,8 @@ MAINTAINER infiniteproject@gmail.com
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get -y --no-install-recommends install \
-    liquidsoap \
-    liquidsoap-plugin-all && \
+        liquidsoap \
+        liquidsoap-plugin-all && \
     apt-get clean && \
     rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
