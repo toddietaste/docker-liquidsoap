@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/infiniteproject/liquidsoap.svg?branch=master)](https://travis-ci.org/infiniteproject/liquidsoap)
 # Liquidsoap
 Liquidsoap for Docker
-Example:
 ```
 docker run -d -v ./script.liq:/script.liq --link some-icecast infiniteproject/liquidsoap /script.liq
 ```
