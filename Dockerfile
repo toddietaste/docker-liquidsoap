@@ -1,5 +1,5 @@
 FROM debian:latest
-MAINTAINER infiniteproject@gmail.com
+LABEL maintainer "infiniteproject@gmail.com"
 
 ENV DEBIAN_FRONTEND noninteractive
 
