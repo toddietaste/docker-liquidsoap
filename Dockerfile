@@ -1,17 +1,16 @@
-FROM debian:latest
+FROM ocaml/opam:latest
 LABEL maintainer "infiniteproject@gmail.com"
 
 ENV DEBIAN_FRONTEND noninteractive
+ENV PACKAGES "taglib mad lame vorbis cry liquidsoap"
 
-RUN apt-get update && apt-get -y --no-install-recommends install \
-        curl \
-        liquidsoap \
-        liquidsoap-plugin-all && \
-    apt-get clean && \
-    rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN opam depext $PACKAGES && \
+    opam install $PACKAGES
 
-RUN mkdir -p /srv/liquidsoap && \
-    chown -R liquidsoap:liquidsoap /srv/liquidsoap
+RUN sudo apt-get clean && \
+    sudo rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-USER liquidsoap
-ENTRYPOINT ["liquidsoap"]
+COPY docker-entrypoint.sh /entrypoint.sh
+RUN sudo chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
