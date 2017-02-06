@@ -2,6 +2,6 @@
 # Liquidsoap
 Liquidsoap for Docker
 ```
-docker run -d -v ./script.liq:/script.liq --link some-icecast infiniteproject/liquidsoap /script.liq
+docker run --link some-icecast infiniteproject/liquidsoap script.liq
 ```
 Feedback appreciated!
