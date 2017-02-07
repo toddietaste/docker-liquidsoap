@@ -2,7 +2,7 @@ FROM ocaml/opam:latest
 LABEL maintainer "infiniteproject@gmail.com"
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV PACKAGES "taglib mad lame vorbis cry liquidsoap aacplus fdkaac"
+ENV PACKAGES "taglib mad lame vorbis cry liquidsoap"
 
 RUN opam depext $PACKAGES && \
     opam install $PACKAGES
