@@ -1,5 +1,6 @@
 FROM ocaml/opam:latest
-LABEL maintainer "phasecorex@gmail.com"
+
+MAINTAINER Ryan Foster <phasecorex@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV PACKAGES "taglib mad lame vorbis cry opus fdkaac faad liquidsoap"
