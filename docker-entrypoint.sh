@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
-eval `opam config env`
+eval $(opam config env)
 liquidsoap $@
