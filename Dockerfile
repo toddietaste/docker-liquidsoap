@@ -28,18 +28,15 @@ RUN set -eux; \
 
 
 
-FROM alpine:3.8 as runner
+FROM phasecorex/user-alpine:3.8 as runner
 
 MAINTAINER Ryan Foster <phasecorex@gmail.com>
 
 COPY --from=builder /home/opam/root /
 
 RUN set -eux; \
-    adduser --system opam; \
     # This line can be removed once fdk-aac-dev makes it into a repo
     apk add --no-cache --allow-untrusted /tmp/fdk-aac-dev-0.1.6-r0.apk /tmp/fdk-aac-0.1.6-r0.apk; \
     cat /depexts | xargs apk add --no-cache;
 
-USER opam
-
-ENTRYPOINT ["/liquidsoap"]
+CMD ["/liquidsoap"]
