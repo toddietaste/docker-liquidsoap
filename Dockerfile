@@ -39,4 +39,4 @@ RUN set -eux; \
     apk add --no-cache --allow-untrusted /tmp/fdk-aac-dev-0.1.6-r0.apk /tmp/fdk-aac-0.1.6-r0.apk; \
     cat /depexts | xargs apk add --no-cache;
 
-CMD ["/liquidsoap"]
+ENTRYPOINT ["user-entrypoint", "/liquidsoap"]
