@@ -26,9 +26,6 @@ COPY --from=builder /home/opam/root /
 RUN set -eux; \
     apt-get update; \
     cat /depexts | xargs apt-get install -y --no-install-recommends; \
-    rm -rf \
-        /var/lib/apt/lists/* \
-        /tmp/* \
-        /var/tmp/*;
+    rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["user-entrypoint", "/liquidsoap"]
