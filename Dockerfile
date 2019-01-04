@@ -13,7 +13,7 @@ RUN set -eux; \
     opam depext -ln $EXTRA_PACKAGES > /home/opam/root/depexts; \
     mkdir -p /home/opam/root/$OPAM_SWITCH_PREFIX/lib; \
     mv $OPAM_SWITCH_PREFIX/share /home/opam/root/$OPAM_SWITCH_PREFIX; \
-    mv $OPAM_SWITCH_PREFIX/lib/liquidsoap /home/opam/root/$OPAM_SWITCH_PREFIX/lib;
+    mv $OPAM_SWITCH_PREFIX/lib/liquidsoap /home/opam/root/$OPAM_SWITCH_PREFIX/lib
 
 
 
@@ -26,6 +26,7 @@ COPY --from=builder /home/opam/root /
 RUN set -eux; \
     apt-get update; \
     cat /depexts | xargs apt-get install -y --no-install-recommends; \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*; \
+    /liquidsoap --version
 
 ENTRYPOINT ["user-entrypoint", "/liquidsoap"]
