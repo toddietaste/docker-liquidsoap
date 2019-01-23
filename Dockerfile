@@ -4,7 +4,12 @@ MAINTAINER Ryan Foster <phasecorex@gmail.com>
 
 ENV EXTRA_PACKAGES="taglib mad lame vorbis cry opus fdkaac faad"
 
-RUN opam depext -i $EXTRA_PACKAGES liquidsoap;
+RUN set -eux; \
+    git pull; \
+    opam update; \
+    opam upgrade; \
+    eval $(opam env); \
+    opam depext -i $EXTRA_PACKAGES liquidsoap
 
 RUN set -eux; \
     eval $(opam config env); \
