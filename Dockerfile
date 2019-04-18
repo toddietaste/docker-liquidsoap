@@ -2,7 +2,7 @@ FROM ocaml/opam2:ubuntu-18.04 as builder
 
 MAINTAINER Ryan Foster <phasecorex@gmail.com>
 
-ENV EXTRA_PACKAGES="taglib mad lame vorbis cry opus fdkaac faad"
+ENV EXTRA_PACKAGES="taglib mad lame vorbis cry opus fdkaac faad flac"
 
 RUN set -eux; \
     git pull; \
