@@ -1,7 +1,5 @@
 FROM ocaml/opam2:ubuntu-18.04 as builder
 
-MAINTAINER Ryan Foster <phasecorex@gmail.com>
-
 ENV EXTRA_PACKAGES="taglib mad lame vorbis cry opus fdkaac faad flac"
 
 RUN set -eux; \
@@ -24,8 +22,6 @@ RUN set -eux; \
 
 FROM phasecorex/user-ubuntu:18.04 as runner
 
-MAINTAINER Ryan Foster <phasecorex@gmail.com>
-
 COPY --from=builder /home/opam/root /
 
 RUN set -eux; \
@@ -35,3 +31,5 @@ RUN set -eux; \
     /liquidsoap --version
 
 ENTRYPOINT ["user-entrypoint", "/liquidsoap"]
+
+LABEL maintainer="Ryan Foster <phasecorex@gmail.com>"
