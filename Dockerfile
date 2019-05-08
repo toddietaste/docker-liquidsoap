@@ -7,6 +7,7 @@ RUN set -eux; \
     opam update; \
     opam upgrade; \
     eval $(opam env); \
+    sudo apt-get update; \
     opam depext -i $EXTRA_PACKAGES liquidsoap
 
 RUN set -eux; \
