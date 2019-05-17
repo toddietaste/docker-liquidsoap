@@ -1,6 +1,8 @@
-
 # Liquidsoap
 Liquidsoap for Docker
+
+[![Donate to support my code](https://img.shields.io/badge/Paypal-Donate-blue.svg)](https://paypal.me/pcx)
+
 ```
 docker run --link some-icecast phasecorex/liquidsoap script.liq
 ```
