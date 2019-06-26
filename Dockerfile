@@ -1,4 +1,4 @@
-FROM ocaml/opam2:ubuntu-18.04 as builder
+FROM ocaml/opam2:ubuntu-18.04-ocaml-4.07 as builder
 
 ENV EXTRA_PACKAGES="taglib mad lame vorbis cry opus fdkaac faad flac"
 
