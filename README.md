@@ -3,16 +3,17 @@ Liquidsoap for Docker
 
 [![Donate to support my code](https://img.shields.io/badge/Paypal-Donate-blue.svg)](https://paypal.me/pcx)
 
+Assuming you have a folder `/music` with a liquidsoap script file in it:
 ```
-docker run --link some-icecast phasecorex/liquidsoap script.liq
+docker run --link some-icecast -v /music:/music:ro phasecorex/liquidsoap /music/script.liq
 ```
 This has been heavily modified from infiniteproject/liquidsoap:
--  Added support for opus and m4a/aac files
-- Much smaller image size (1.66GB down to 227MB)
-- User and Timezone support
-	- You can set `PUID` to whatever UID you want Liquidsoap to run as (though since we aren't writing anything to disk, this might not be needed)
-	- You can optionally set `PGID` to a GID you want Liquidsoap to run as. If not, it defaults to whatever the UID is.
-	- You can set `TZ` to a timezone (e.g. `TZ=America/Detroit`) so that Liquidsoap logs are in your timezone.
+- Added support for opus, flac, and m4a/aac files
+- Much smaller image size (215MB instead of 1.66GB)
+- Runs as non-root user
+	- You can set environment variable `PUID` to whatever user ID you want Liquidsoap to run as. Defaults to 1000.
+	- You can also set `PGID` to a group ID you want Liquidsoap to run as. If you don't, it defaults to whatever the UID is set to.
+- Timezone support
+	- You can set environment variable `TZ` to a timezone (e.g. `TZ=America/Detroit`) so that Liquidsoap logs are in your timezone.
 
 Feedback appreciated!
-
