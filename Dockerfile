@@ -1,4 +1,4 @@
-FROM ocaml/opam2:ubuntu-18.04-ocaml-4.07 as builder
+FROM ocaml/opam2:debian-10-ocaml-4.09 as builder
 
 ENV EXTRA_PACKAGES="taglib mad lame vorbis cry opus fdkaac faad flac"
 
@@ -6,7 +6,10 @@ RUN set -eux; \
     git pull; \
     opam update; \
     opam upgrade; \
-    eval $(opam env); \
+    eval $(opam env)
+
+RUN set -eux; \
+    sudo sed -i 's/$/ non-free/' /etc/apt/sources.list; \
     sudo apt-get update; \
     opam depext -i $EXTRA_PACKAGES liquidsoap
 
@@ -21,11 +24,12 @@ RUN set -eux; \
 
 
 
-FROM phasecorex/user-ubuntu:18.04 as runner
+FROM phasecorex/user-debian:10 as runner
 
 COPY --from=builder /home/opam/root /
 
 RUN set -eux; \
+    sed -i 's/$/ non-free/' /etc/apt/sources.list; \
     apt-get update; \
     cat /depexts | xargs apt-get install -y --no-install-recommends; \
     rm -rf /var/lib/apt/lists/*; \
