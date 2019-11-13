@@ -1,3 +1,5 @@
+ARG BASE_IMG
+
 FROM ocaml/opam2:debian-10-ocaml-4.09 as builder
 
 ENV EXTRA_PACKAGES="taglib mad lame vorbis cry opus fdkaac faad flac"
@@ -24,7 +26,7 @@ RUN set -eux; \
 
 
 
-FROM phasecorex/user-debian:10 as runner
+FROM ${BASE_IMG}
 
 COPY --from=builder /home/opam/root /
 
