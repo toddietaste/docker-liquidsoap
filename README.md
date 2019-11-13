@@ -1,6 +1,9 @@
 # Liquidsoap
 Liquidsoap for Docker
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/phasecorex/liquidsoap)](https://hub.docker.com/r/phasecorex/liquidsoap)
+[![Image Size](https://images.microbadger.com/badges/image/phasecorex/liquidsoap.svg)](https://microbadger.com/images/phasecorex/liquidsoap)
+[![Build Status](https://img.shields.io/docker/build/phasecorex/liquidsoap)](https://hub.docker.com/r/phasecorex/liquidsoap)
 [![Donate to support my code](https://img.shields.io/badge/Paypal-Donate-blue.svg)](https://paypal.me/pcx)
 
 Assuming you have a folder `/music` with a liquidsoap script file in it:
