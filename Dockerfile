@@ -1,6 +1,6 @@
 ARG BASE_IMG
 
-FROM ocaml/opam2:debian-10-ocaml-4.09 as builder
+FROM ocaml/opam2:debian-10 as builder
 
 ENV EXTRA_PACKAGES="taglib mad lame vorbis cry opus fdkaac faad flac"
 
