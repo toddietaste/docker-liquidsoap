@@ -1,5 +1,3 @@
-ARG BASE_IMG
-
 FROM ocaml/opam2:debian-10 as builder
 
 ENV EXTRA_PACKAGES="taglib mad lame vorbis cry opus fdkaac faad flac"
@@ -26,7 +24,7 @@ RUN set -eux; \
 
 
 
-FROM ${BASE_IMG}
+FROM phasecorex/user-debian:10-slim
 
 COPY --from=builder /home/opam/root /
 
@@ -38,5 +36,3 @@ RUN set -eux; \
     /liquidsoap --version
 
 ENTRYPOINT ["user-entrypoint", "/liquidsoap"]
-
-LABEL maintainer="Ryan Foster <phasecorex@gmail.com>"

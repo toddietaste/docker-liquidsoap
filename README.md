@@ -2,8 +2,7 @@
 Liquidsoap for Docker
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/phasecorex/liquidsoap)](https://hub.docker.com/r/phasecorex/liquidsoap)
-[![Image Size](https://images.microbadger.com/badges/image/phasecorex/liquidsoap.svg)](https://microbadger.com/images/phasecorex/liquidsoap)
-[![Build Status](https://cloud.drone.io/api/badges/PhasecoreX/docker-liquidsoap/status.svg)](https://cloud.drone.io/PhasecoreX/docker-liquidsoap)
+[![Build Status](https://github.com/PhasecoreX/docker-liquidsoap/workflows/build/badge.svg)](https://github.com/PhasecoreX/docker-liquidsoap/actions?query=workflow%3Abuild)
 [![BuyMeACoffee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange)](https://buymeacoff.ee/phasecorex)
 [![PayPal](https://img.shields.io/badge/paypal-donate-blue)](https://paypal.me/pcx)
 
