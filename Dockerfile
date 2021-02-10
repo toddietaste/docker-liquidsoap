@@ -1,23 +1,19 @@
-FROM ocaml/opam2:debian-10 as builder
+FROM ocaml/opam:debian-10 as builder
 
-ENV EXTRA_PACKAGES="taglib mad lame vorbis cry opus fdkaac faad flac"
-
-RUN set -eux; \
-    git pull; \
-    opam update; \
-    opam upgrade; \
-    eval $(opam env)
+ENV PACKAGES="taglib mad lame vorbis cry samplerate opus fdkaac faad flac liquidsoap"
 
 RUN set -eux; \
     sudo sed -i 's/$/ non-free/' /etc/apt/sources.list; \
     sudo apt-get update; \
-    opam depext -i $EXTRA_PACKAGES liquidsoap
+    for package in $PACKAGES; do \
+        opam depext --install $package; \
+    done
 
 RUN set -eux; \
-    eval $(opam config env); \
-    mkdir -p /home/opam/root; \
-    mv $(which liquidsoap) /home/opam/root; \
-    opam depext -ln $EXTRA_PACKAGES > /home/opam/root/depexts; \
+    eval $(opam env); \
+    mkdir -p /home/opam/root/app; \
+    mv $(command -v liquidsoap) /home/opam/root/app; \
+    opam depext --list $PACKAGES > /home/opam/root/app/depexts; \
     mkdir -p /home/opam/root/$OPAM_SWITCH_PREFIX/lib; \
     mv $OPAM_SWITCH_PREFIX/share /home/opam/root/$OPAM_SWITCH_PREFIX; \
     mv $OPAM_SWITCH_PREFIX/lib/liquidsoap /home/opam/root/$OPAM_SWITCH_PREFIX/lib
@@ -31,8 +27,8 @@ COPY --from=builder /home/opam/root /
 RUN set -eux; \
     sed -i 's/$/ non-free/' /etc/apt/sources.list; \
     apt-get update; \
-    cat /depexts | xargs apt-get install -y --no-install-recommends; \
+    cat /app/depexts | xargs apt-get install -y --no-install-recommends; \
     rm -rf /var/lib/apt/lists/*; \
-    /liquidsoap --version
+    /app/liquidsoap --version
 
-ENTRYPOINT ["user-entrypoint", "/liquidsoap"]
+ENTRYPOINT ["user-entrypoint", "/app/liquidsoap"]
