@@ -5,11 +5,8 @@ ENV PACKAGES="taglib mad lame vorbis cry samplerate.0.1.5 opus fdkaac faad flac"
 RUN set -eux; \
     sudo sed -i 's/$/ non-free/' /etc/apt/sources.list; \
     sudo apt-get update; \
-    sudo apt-get install -y --no-install-recommends ocaml-findlib libcamomile-ocaml-dev \
-        libmad0-dev libshout3-dev libvorbis-dev libid3tag0-dev \
-        libasound2-dev autoconf automake wget ;\
-    opam update; \
-    opam depext conf-pkg-config conf-libpcre; \
+    sudo apt-get install -y --no-install-recommends autoconf automake ocaml-findlib \
+        libcamomile-ocaml-dev libshout3-dev  libid3tag0-dev libasound2-dev  libpcre3-dev ;\
     for package in $PACKAGES; do \
         opam depext --install $package; \
     done ; \
