@@ -6,12 +6,11 @@ RUN set -eux; \
     sudo sed -i 's/$/ non-free/' /etc/apt/sources.list; \
     sudo apt-get update; \
     sudo apt-get install -y --no-install-recommends autoconf automake ocaml-findlib \
-        libcamomile-ocaml-dev libshout3-dev  libid3tag0-dev libasound2-dev  libpcre3-dev ;\
+        libcamomile-ocaml-dev libshout3-dev libid3tag0-dev libasound2-dev  libpcre3-dev ;\
     for package in $PACKAGES; do \
         opam depext --install $package; \
     done ; \
     opam pin add liquidsoap https://github.com/savonet/liquidsoap/archive/refs/tags/v2.0.0-beta3.tar.gz 
-
 
 RUN set -eux; \
     eval $(opam env); \
