@@ -1,19 +1,26 @@
-FROM ocaml/opam:debian-10 as builder
+FROM ocaml/opam:debian-10-ocaml-4.13 as builder
 
-ENV PACKAGES="taglib mad lame vorbis cry samplerate opus fdkaac faad flac liquidsoap"
+ENV PACKAGES="taglib mad lame vorbis cry samplerate.0.1.5 opus fdkaac faad flac"
 
 RUN set -eux; \
     sudo sed -i 's/$/ non-free/' /etc/apt/sources.list; \
     sudo apt-get update; \
+    sudo apt-get install -y --no-install-recommends ocaml-findlib libcamomile-ocaml-dev \
+        libmad0-dev libshout3-dev libvorbis-dev libid3tag0-dev \
+        libasound2-dev autoconf automake wget ;\
+    opam update; \
+    opam depext conf-pkg-config conf-libpcre; \
     for package in $PACKAGES; do \
         opam depext --install $package; \
-    done
+    done ; \
+    opam pin add liquidsoap https://github.com/savonet/liquidsoap/archive/refs/tags/v2.0.0-beta3.tar.gz 
+
 
 RUN set -eux; \
     eval $(opam env); \
     mkdir -p /home/opam/root/app; \
     mv $(command -v liquidsoap) /home/opam/root/app; \
-    opam depext --list $PACKAGES > /home/opam/root/app/depexts; \
+    opam depext --list $PACKAGES liquidsoap > /home/opam/root/app/depexts; \
     mkdir -p /home/opam/root/$OPAM_SWITCH_PREFIX/lib; \
     mv $OPAM_SWITCH_PREFIX/share /home/opam/root/$OPAM_SWITCH_PREFIX; \
     mv $OPAM_SWITCH_PREFIX/lib/liquidsoap /home/opam/root/$OPAM_SWITCH_PREFIX/lib

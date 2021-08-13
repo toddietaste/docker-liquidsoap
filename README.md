@@ -1,14 +1,15 @@
 # Liquidsoap
-Liquidsoap for Docker
+Liquidsoap 2 (currently v2.0.0-beta3) for Docker
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/phasecorex/liquidsoap)](https://hub.docker.com/r/phasecorex/liquidsoap)
-[![Build Status](https://github.com/PhasecoreX/docker-liquidsoap/workflows/build/badge.svg)](https://github.com/PhasecoreX/docker-liquidsoap/actions?query=workflow%3Abuild)
-[![BuyMeACoffee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange)](https://buymeacoff.ee/phasecorex)
-[![PayPal](https://img.shields.io/badge/paypal-donate-blue)](https://paypal.me/pcx)
+based on phasecorex version, changed to build specific version of liquidsoap from source instead of using OPAM-Version (which would be latest stable release, currently still 1.4.4). 
+
+Intended for providing an Armv7/32bit docker container of Liquidsoap2, i.e. for use with non 64-bit Raspberry Pi OS, since Savonet-provided official docker containers for liquidsoap2 are (currently) only available for 64bit-OS (and do only provide a minimal set of enabled libraries). 
+
 
 Assuming you have a folder `/music` with a liquidsoap script file in it:
 ```
-docker run --link some-icecast -v /music:/music:ro phasecorex/liquidsoap /music/script.liq
+docker build -t liquidsoap2 .
+docker run --link some-icecast -v /music:/music:ro liquidsoap2 /music/script.liq
 ```
 This has been heavily modified from infiniteproject/liquidsoap:
 - Added support for opus, flac, and m4a/aac files
